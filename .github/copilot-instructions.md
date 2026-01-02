@@ -38,7 +38,10 @@ This repository contains the official website for HYDRA-TERRA Landscape Solution
 - Include descriptive alt text for accessibility
 
 ## Content Guidelines
-- Company name: HYDRA-TERRA (all caps with hyphen)
+- Company name variations (maintain existing usage in each context):
+  - Display name: `HYDRA-TERRA` (all caps with hyphen) - used in headings and titles
+  - Repository/README: `Hydra-terra` (title case with hyphen)
+  - Social media handles: `hydraterra` (lowercase, no hyphen) - @hydraterra.com.au
 - Domain: HYDRA-TERRA.COM.AU
 - Social media platforms supported: Instagram, Facebook, TikTok, Google, WhatsApp
 - Contact number: +61 426 398 510
