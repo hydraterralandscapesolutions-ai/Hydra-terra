@@ -74,7 +74,7 @@ This repository contains the official website for HYDRA-TERRA Landscape Solution
 - Maintain grid layout responsiveness
 
 ### Modifying Contact Information
-- Update WhatsApp link (href="https://wa.me/PHONENUMBER")
+- Update WhatsApp link (e.g., `href="https://wa.me/61426398510"`)
 - Update social media URLs
 - Update QR code images if contact methods change
 
