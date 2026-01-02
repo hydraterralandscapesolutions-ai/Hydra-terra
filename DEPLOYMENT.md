@@ -55,7 +55,7 @@ For best results, configure both:
    ```
    Type: CNAME
    Name: www
-   Value: hydra-terra.com.au
+   Value: HYDRA-TERRA.COM.AU
    TTL: 3600
    ```
 
@@ -68,7 +68,7 @@ For best results, configure both:
    - **Folder**: `/ (root)`
 
 3. Under "Custom domain":
-   - Enter: `HYDRA-TERRA.COM.AU` (or `www.hydra-terra.com.au`)
+   - Enter: `HYDRA-TERRA.COM.AU` (or `www.HYDRA-TERRA.COM.AU`)
    - Click "Save"
    - Wait for DNS check to complete
    - Enable "Enforce HTTPS" once DNS propagation is complete
