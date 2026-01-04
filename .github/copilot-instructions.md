@@ -1,91 +1,37 @@
-# Copilot Instructions for HYDRA-TERRA
+# Copilot Instructions
 
 ## Project Overview
-This repository contains the official website for HYDRA-TERRA Landscape Solutions (HYDRA-TERRA.COM.AU), a professional landscaping services company based in Australia.
+Hydra-Terra is a single-page, animated landscaping site with three AI personas (Hydra, Terra, Sol) and voice-enabled chat. It is static, runs from the repo root, and deploys via GitHub Pages on `main` with the custom domain `hydra-terra.com.au` (CNAME).
 
-## Repository Structure
-- `index.html` - Main website landing page with company information and contact details
-- `Cname` - Custom domain configuration for GitHub Pages
-- `README.md` - Project documentation
-- Logo and icon assets (`logo_*.png`, `icon_*.png`) - Brand identity files
+## Constraints
+- **No new npm installs**; use existing deps only (http-server, htmlhint, linkinator). Libraries via CDN/script tags.
+- **Stack**: Vanilla HTML/CSS/JS, GSAP via CDN, Web Speech API for voice. No bundlers/build tools.
+- **Hosting**: GitHub Pages, deploys from `main` with `CNAME` present.
 
-## Website Technology Stack
-- **Frontend**: Static HTML with inline CSS
-- **Hosting**: GitHub Pages
-- **Domain**: HYDRA-TERRA.COM.AU
+## Core Features
+- Hero with animated logo, parallax accents, CTA buttons.
+- Three chatbots: Hydra (design), Terra (maintenance; Australian female voice priority), Sol (sustainability). Auto-greeting after ~3s; typing indicators; short replies with quick-action buttons.
+- Bot avatar selector that pops in; glassy panels; glow/gradient accents.
+- Social hub with QR-code buttons (WhatsApp, Instagram, Facebook, TikTok, Google); pulse/glow hover.
+- Gallery cards marked "Coming Soon"; irrigation planning/installation copy; no composting references.
+- Wide logo banner (16:4 aspect, contain) with figure-like bot avatars.
 
-## Coding Standards and Conventions
+## Design & Motion
+- Palette: bg #0b1220, text #e8eefc, cards #1f2937; accents Hydra #3b82f6, Terra #16a34a, Sol #f59e0b.
+- Use `clamp()` typography, flex/grid layouts; glassmorphism on floating panels; meaningful staggered animations.
+- Performance: favor `transform`/`opacity`, respect `prefers-reduced-motion`, light gradients and shadows.
 
-### HTML
-- Use semantic HTML5 elements where appropriate
-- Maintain inline styles for simplicity (no separate CSS file currently)
-- Keep responsive design considerations (mobile-first approach)
-- Follow accessibility best practices (alt text for images, proper heading hierarchy)
+## Assets & Content
+- Logos at root (logo_*.png), icons; QR PNGs at root. Bot avatars use existing illustrated styles.
+- Custom domain: `hydra-terra.com.au` stored in `CNAME` (uppercase filename).
+- Contact number: +61 426 398 510; social handle `@hydraterra.com.au` where applicable.
 
-### Styling
-- Use system fonts: `system-ui, Segoe UI, Arial`
-- Color palette:
-  - Primary background: `#111827` (dark)
-  - Text: `#e8eefc` (light)
-  - Accent: `#1f2937` (buttons/cards)
-  - Success/WhatsApp: `#16a34a` (green)
-- Border radius: `8px` for buttons, `10-12px` for cards/images
-- Maintain consistent spacing and padding
+## Dev Workflow
+- Local quickstart: `npm start` (http-server) or `python3 -m http.server 8000 --directory /workspaces/Hydra-terra`.
+- Checks: `npx htmlhint "**/*.html"`; `npm run serve &` then `npx wait-on http://localhost:8000`; `npx linkinator http://localhost:8000 --recursive --silent`.
+- Deployment: Push to `main` → CI (lint/link) → Pages → custom domain.
 
-### Images
-- Optimize images for web (PNG format currently used)
-- Provide multiple sizes where appropriate (e.g., logo_400.png, logo_800.png)
-- Include descriptive alt text for accessibility
-
-## Content Guidelines
-- Company name variations (maintain existing usage in each context):
-  - Display name: `HYDRA-TERRA` (all caps with hyphen) - used in headings and titles
-  - Repository/README: `Hydra-terra` (title case with hyphen)
-  - Social media handles: `hydraterra` (lowercase, no hyphen) - @hydraterra.com.au
-- Domain: HYDRA-TERRA.COM.AU
-- Social media platforms supported: Instagram, Facebook, TikTok, Google, WhatsApp
-- Contact number: +61 426 398 510
-
-## Deployment
-- **Platform**: GitHub Pages
-- **Branch**: Changes are deployed from the main/default branch
-- **Custom Domain**: Configured via CNAME file
-- **Process**: Push to main branch triggers automatic deployment
-
-## Best Practices
-1. **Always preserve existing functionality** - This is a production website
-2. **Test responsive design** - Ensure changes work on mobile, tablet, and desktop
-3. **Validate HTML** - Use W3C validator or similar tools
-4. **Optimize assets** - Compress images and minimize file sizes
-5. **Maintain brand consistency** - Follow the established color scheme and design patterns
-6. **Test all links** - Ensure social media and contact links work correctly
-7. **Accessibility** - Maintain WCAG compliance where possible
-
-## Common Tasks
-
-### Adding New Social Media Links
-- Add to the social links section in `index.html`
-- Use consistent button styling
-- Ensure target="_blank" for external links
-
-### Updating Gallery Images
-- Replace placeholder divs with actual images
-- Use optimized image files
-- Maintain grid layout responsiveness
-
-### Modifying Contact Information
-- Update WhatsApp link (e.g., `href="https://wa.me/61426398510"`)
-- Update social media URLs
-- Update QR code images if contact methods change
-
-## Testing
-- **Visual Testing**: Open `index.html` in multiple browsers (Chrome, Firefox, Safari)
-- **Mobile Testing**: Use browser dev tools to test responsive design
-- **Link Testing**: Verify all external links work correctly
-- **Performance**: Check page load speed and optimize if needed
-
-## Notes
-- This is a simple static website - avoid over-engineering
-- Keep dependencies minimal (no build process required)
-- Focus on clarity, performance, and user experience
-- When in doubt, maintain the existing simple, straightforward approach
+## Practices
+- Keep HTML semantic; add alt text; maintain responsive/mobile-first layout.
+- Avoid new assets >1MB; prefer WebP if adding photos; keep QR/branding as-is.
+- Preserve voice logic (female voices; Terra prefers en-AU). Keep QR backgrounds and "Coming Soon" gallery labels.

@@ -1,34 +1,21 @@
-# Hydra-terra
+# Hydra-Terra
 
-Landscaping website for HYDRA-TERRA Landscape Solutions.
+Single-page, animated landscape solutions site for HYDRA-TERRA. Voice-enabled AI personas (Hydra, Terra, Sol) guide visitors. Static build—no bundler.
 
-## 🌐 Live Website
+## 🌐 Live
+- Production: https://HYDRA-TERRA.COM.AU
+- GitHub Pages: https://hydraterralandscapesolutions-ai.github.io/Hydra-terra/
 
-- **Production URL**: https://HYDRA-TERRA.COM.AU
-- **GitHub Pages URL**: https://hydraterralandscapesolutions-ai.github.io/Hydra-terra/
+## 🚀 Deployment
+- Branch: `main`
+- GitHub Actions: `.github/workflows/deploy-pages.yml` publishes the repo root (includes `CNAME`).
+- CI: `.github/workflows/ci.yml` runs htmlhint, serves on :8000, then linkinator.
 
-## 📋 Deployment Information
+## 🔧 Local Dev
+- Python: `python3 -m http.server 8000 --directory /workspaces/Hydra-terra`
+- Node: `npm start` (uses existing http-server dependency)
 
-**Branch to use**: `main`
-
-For detailed deployment and DNS configuration instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-### Quick Start
-
-1. Make changes in a feature branch
-2. Create a Pull Request to `main`
-3. Merge the PR
-4. GitHub Pages automatically deploys your changes
-
-## 📞 Connect with HYDRA-TERRA
-
-- Instagram: [@hydraterra.com.au](https://www.instagram.com/hydraterra.com.au)
-- Facebook: [HYDRA-TERRA](https://www.facebook.com/share/16xa7NGbyY/)
-- TikTok: [@hydraterra.com.au](https://www.tiktok.com/@hydraterra.com.au)
-- WhatsApp: [+61 426 398 510](https://wa.me/61426398510)
-
-## 🛠️ Technology Stack
-
-- Static HTML website
-- Deployed via GitHub Pages
-- Custom domain: HYDRA-TERRA.COM.AU
+## 📋 Notes
+- Custom domain is set via `CNAME` with `hydra-terra.com.au`.
+- Keep QR social buttons, wide logo banner, "Coming Soon" gallery cards, and female voices (Terra Australian priority).
+- Contact: +61 426 398 510; socials use handle @hydraterra.com.au.

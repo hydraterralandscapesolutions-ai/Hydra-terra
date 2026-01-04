@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HYDRA-TERRA</title>
+  <meta name="description" content="HYDRA-TERRA landscaping — connect, view recent work, and reach us instantly.">
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      background: #0b1220;
+      color: #e8eefc;
+      font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    }
+    main { max-width: 1100px; margin: 0 auto; }
+    .card { background: #0f172a; border: 1px solid #1f2937; border-radius: 14px; padding: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+    .hero { text-align: center; margin-bottom: 32px; padding: 20px; border-radius: 16px; background: linear-gradient(135deg, rgba(31,41,55,0.9), rgba(34,58,89,0.85)); border: 1px solid #1f2937; }
+    .hero h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: 0.02em; }
+    .hero p { margin: 0 0 16px; opacity: 0.9; }
+    .cta { display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 12px 16px; border-radius: 10px; text-decoration: none; font-weight: 700; color: #0b1220; background: #16a34a; }
+    .btn.secondary { background: #1f2937; color: #fff; border: 1px solid #334155; }
+    .section-title { text-align: center; margin: 0 0 10px; font-size: 1.35rem; }
+    .section-sub { text-align: center; margin: 0 0 30px; opacity: 0.85; }
+    .socials { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
+    .socials a { padding: 12px 18px; border-radius: 8px; background: #1f2937; color: #fff; text-decoration: none; }
+    .socials a.whatsapp { background: #16a34a; }
+    .qr-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 20px; text-align: center; margin-bottom: 60px; }
+    .qr-grid img { width: 100%; border-radius: 10px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; }
+    .gallery .tile { height: 160px; background: #111827; border-radius: 12px; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+    .gallery-wide { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 14px; margin-top: 14px; }
+    .gallery-card { background: #0f172a; border: 1px solid #1f2937; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,0.25); display: grid; grid-template-rows: auto 1fr; }
+    .gallery-photo { position: relative; padding-top: 66%; background: linear-gradient(135deg, #1f2937, #111827); }
+    .gallery-photo[data-src] { background-size: cover; background-position: center; }
+    .gallery-meta { padding: 12px 14px 14px; display: grid; gap: 6px; }
+    .gallery-meta h4 { margin: 0; font-size: 1rem; }
+    .gallery-meta p { margin: 0; color: #94a3b8; line-height: 1.4; font-size: 0.95rem; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 12px; margin-top: 12px; }
+    .input { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #1f2937; background: #0b1220; color: #e8eefc; }
+    .input:focus { outline: 2px solid #16a34a; outline-offset: 1px; }
+    .textarea { min-height: 120px; resize: vertical; }
+    .form-actions { margin-top: 12px; }
+    .link-row-tight { display: flex; flex-wrap: wrap; gap: 10px; }
+    footer { text-align: center; margin-top: 32px; color: #94a3b8; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero card">
+      <h1>HYDRA-TERRA Landscaping</h1>
+      <p>Outdoor design, build, and maintenance — crafted for Australian conditions.</p>
+      <div class="cta">
+        <a class="btn" href="tel:61426398510">Call 0426 398 510</a>
+        <a class="btn secondary" href="https://wa.me/61426398510" target="_blank" rel="noreferrer">Message on WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- ===== HYDRA-TERRA CONNECT & GALLERY SECTION ===== -->
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 class="section-title">Connect with HYDRA-TERRA</h2>
+      <p class="section-sub">Follow, message, or scan a QR code to get in touch instantly</p>
+
+      <!-- SOCIAL LINKS -->
+      <div class="socials" aria-label="Social links">
+        <a href="https://www.instagram.com/hydraterra.com.au" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/share/16xa7NGbyY/" target="_blank" rel="noreferrer">Facebook</a>
+        <a href="https://www.tiktok.com/@hydraterra.com.au" target="_blank" rel="noreferrer">TikTok</a>
+        <a href="https://share.google/TRU7GbzRkTfh3Wued" target="_blank" rel="noreferrer">Google</a>
+        <a class="whatsapp" href="https://wa.me/61426398510" target="_blank" rel="noreferrer">WhatsApp</a>
+      </div>
+
+      <!-- QR CODES -->
+      <h3 class="section-title" style="margin-top: 0;">Scan a QR Code</h3>
+      <div class="qr-grid">
+        <div>
+          <img src="whatsapp-qr.png" alt="WhatsApp QR code">
+          <p>WhatsApp</p>
+        </div>
+
+        <div>
+          <img src="instagram-qr.png" alt="Instagram QR code">
+          <p>Instagram</p>
+        </div>
+
+        <div>
+          <img src="facebook-qr.png" alt="Facebook QR code">
+          <p>Facebook</p>
+        </div>
+
+        <div>
+          <img src="tiktok-qr.png" alt="TikTok QR code">
+          <p>TikTok</p>
+        </div>
+
+        <div>
+          <img src="google-qr.png" alt="Google QR code">
+          <p>Google</p>
+        </div>
+      </div>
+
+      <!-- GALLERY PLACEHOLDER -->
+      <h2 class="section-title">Recent Work</h2>
+      <div class="gallery">
+        <div class="tile">Image 1</div>
+        <div class="tile">Image 2</div>
+        <div class="tile">Image 3</div>
+        <div class="tile">Image 4</div>
+        <div class="tile">Image 5</div>
+        <div class="tile">Image 6</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 class="section-title">Project gallery</h2>
+      <p class="section-sub">Add more photos with captions. Replace the backgrounds below with your own images (e.g., img/project1.jpg).</p>
+      <div class="gallery-wide">
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project1.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Short note about materials, planting, or location.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project2.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Highlight the feature: lighting, turf, stone, or drainage.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project3.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Mention size, timeline, or maintenance plan.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project4.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Optional: region/suburb or client goal.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project5.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Describe hardscape + planting combo.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" data-src style="background-image:url('img/project6.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Project title</h4>
+            <p>Add more entries by duplicating this card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 class="section-title">Book a visit</h2>
+      <p class="section-sub">Tell us about your site. We’ll reply with a time window and next steps.</p>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="form-grid">
+          <input class="input" type="text" name="name" placeholder="Your name" required>
+          <input class="input" type="tel" name="phone" placeholder="Phone" required>
+          <input class="input" type="email" name="email" placeholder="Email" required>
+          <input class="input" type="text" name="suburb" placeholder="Suburb / City" required>
+        </div>
+        <div class="form-grid">
+          <input class="input" type="date" name="preferred_date" placeholder="Preferred date">
+          <input class="input" type="text" name="budget" placeholder="Budget range (optional)">
+        </div>
+        <textarea class="input textarea" name="scope" placeholder="What do you want to achieve? (e.g., turf + irrigation, stonework, lighting, planting)" required></textarea>
+        <div class="form-actions link-row-tight">
+          <button class="btn" type="submit">Send request</button>
+          <a class="btn secondary" href="mailto:info@hydraterra.com.au">Email instead</a>
+          <a class="btn secondary" href="https://calendly.com/your-calendly-link" target="_blank" rel="noreferrer">Schedule via Calendly</a>
+        </div>
+      </form>
+      <p class="section-sub" style="margin-top:12px;">Replace the Formspree and Calendly links with your own to activate submissions.</p>
+    </section>
+
+    <footer>Hydra-Terra Landscaping · Call 0426 398 510</footer>
+  </main>
+
+  <!-- Optional chat widget: replace SITE_ID with your provider's ID and uncomment to enable -->
+  <!--
+  <script>
+    (function(){
+      var s=document.createElement('script');
+      s.src='https://client.crisp.chat/l.js';s.async=1;
+      s.onload=function(){ window.$crisp=[]; window.CRISP_WEBSITE_ID='SITE_ID'; };
+      document.head.appendChild(s);
+    })();
+  </script>
+  -->
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "chat.agentSessionsViewLocation": "view",
+    "chat.disableAIFeatures": false,
+    "chat.editor.wordWrap": "on",
+    "chat.exitAfterDelegation": false,
+    "chat.mcp.assisted.nuget.enabled": false,
+    "chat.mcp.serverSampling": {
+        
+    }
+}
