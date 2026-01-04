@@ -1,61 +1,1296 @@
-<!-- ===== HYDRA-TERRA CONNECT & GALLERY SECTION ===== -->
-<section style="max-width:1100px;margin:60px auto;padding:20px;color:#e8eefc;font-family:system-ui,Segoe UI,Arial">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HYDRA-TERRA | Voice-Enabled AI Landscape Consultants</title>
+  <meta name="description" content="Talk to Hydra, Terra & Sol - AI landscape experts with voice interaction. Get instant design, maintenance & sustainability advice.">
+  
+  <!-- CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  
+  <style>
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0b1220;
+      color: #e8eefc;
+      font-family: system-ui, "Segoe UI", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+    
+    /* Animated Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 60px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(31,41,55,0.9), rgba(34,58,89,0.85));
+      border: 1px solid #1f2937;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent);
+      animation: scan 4s infinite;
+    }
+    
+    @keyframes scan {
+      0%, 100% { left: -100%; }
+      50% { left: 100%; }
+    }
+    
+    .hero-logo {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin: 0 0 12px;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #3b82f6, #16a34a, #f59e0b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+    }
+    
+    .hero p {
+      margin: 0 0 30px;
+      opacity: 0;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+    
+    .cta {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+    }
+    
+    .btn {
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #0b1220;
+      background: #16a34a;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(22,163,74,0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(22,163,74,0.4);
+    }
+    
+    .btn.secondary {
+      background: rgba(31,41,55,0.8);
+      color: #fff;
+      border: 1px solid #334155;
+      box-shadow: none;
+    }
+    
+    /* Bot Selector */
+    .bot-selector {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
 
-  <h2 style="text-align:center;margin-bottom:10px;">Connect with HYDRA-TERRA</h2>
-  <p style="text-align:center;opacity:.85;margin-bottom:40px;">
-    Follow, message, or scan a QR code to get in touch instantly
-  </p>
+    .bot-selector.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    
+    .bot-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bot-avatar::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    
+    .bot-avatar::after {
+      content: attr(data-name);
+      position: absolute;
+      right: 80px;
+      background: rgba(15,23,42,0.95);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border: 1px solid #1f2937;
+    }
+    
+    .bot-avatar:hover::after {
+      opacity: 1;
+    }
+    
+    .bot-avatar:hover {
+      transform: scale(1.15);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .bot-avatar.hydra {
+      background: #3b82f6;
+      border-color: #60a5fa;
+      animation-delay: 0s;
+    }
+    
+    .bot-avatar.terra {
+      background: #16a34a;
+      border-color: #4ade80;
+      animation-delay: 1s;
+    }
+    
+    .bot-avatar.sol {
+      background: #f59e0b;
+      border-color: #fbbf24;
+      animation-delay: 2s;
+    }
+    
+    .voice-indicator {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      display: none;
+    }
+    
+    .voice-indicator.active {
+      display: block;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+    
+    /* Chat Modal */
+    .chat-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11,18,32,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .chat-modal.active {
+      display: flex;
+    }
+    
+    .chat-container {
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 20px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transform: scale(0.8);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .chat-modal.active .chat-container {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .chat-header {
+      padding: 20px;
+      border-bottom: 1px solid #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+    }
+    
+    .chat-header .bot-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+    }
+    
+    .bot-status {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.8rem;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    
+    .close-btn:hover {
+      background: #1f2937;
+      color: #e8eefc;
+    }
+    
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    
+    .message {
+      padding: 14px 18px;
+      border-radius: 14px;
+      max-width: 85%;
+      animation: slideIn 0.3s ease-out;
+      line-height: 1.5;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .message.bot {
+      background: rgba(31,41,55,0.6);
+      align-self: flex-start;
+      border-left: 3px solid;
+    }
+    
+    .message.user {
+      background: #16a34a;
+      align-self: flex-end;
+      color: #fff;
+    }
+    
+    .message strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .typing-indicator {
+      display: none;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(31,41,55,0.6);
+      align-self: flex-start;
+      max-width: 70px;
+    }
+    
+    .typing-indicator.active {
+      display: block;
+    }
+    
+    .typing-indicator span {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #94a3b8;
+      margin: 0 2px;
+      animation: bounce 1.4s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+    
+    .chat-input-area {
+      padding: 16px 20px;
+      border-top: 1px solid #1f2937;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .chat-input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+      background: #0b1220;
+      color: #e8eefc;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .chat-input:focus {
+      outline: 2px solid #16a34a;
+      outline-offset: 1px;
+    }
+    
+    .voice-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: #1f2937;
+      border: 1px solid #334155;
+      color: #e8eefc;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    
+    .voice-btn:hover {
+      background: #334155;
+    }
+    
+    .voice-btn.listening {
+      background: #ef4444;
+      animation: pulse 1s infinite;
+    }
+    
+    .send-btn {
+      padding: 14px 24px;
+      background: #16a34a;
+      border: none;
+      border-radius: 12px;
+      color: #0b1220;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .send-btn:hover {
+      background: #22c55e;
+    }
+    
+    /* Quick Actions */
+    .quick-actions {
+      padding: 12px 20px;
+      border-top: 1px solid #1f2937;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .quick-btn {
+      padding: 8px 14px;
+      background: rgba(31,41,55,0.6);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #e8eefc;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .quick-btn:hover {
+      background: #1f2937;
+      border-color: #16a34a;
+    }
+    
+    /* Cards & Sections */
+    .card {
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin: 0 0 12px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    
+    .section-sub {
+      text-align: center;
+      margin: 0 0 30px;
+      opacity: 0.85;
+    }
+    
+    /* QR Grid */
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .qr-item {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .qr-item:hover {
+      transform: scale(1.05);
+    }
+    
+    .qr-item img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+    }
+    
+    .qr-item:hover img {
+      box-shadow: 0 8px 30px rgba(22,163,74,0.4);
+    }
+    
+    /* Gallery */
+    .gallery-wide {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .gallery-card {
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    
+    .gallery-photo {
+      position: relative;
+      padding-top: 66%;
+      background: linear-gradient(135deg, #1f2937, #111827);
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .gallery-photo::after {
+      content: 'Coming Soon';
+      position: absolute;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: rgba(232, 238, 252, 0.5);
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    .gallery-card:hover .gallery-photo {
+      transform: scale(1.05);
+    }
+    
+    .gallery-meta {
+      padding: 16px;
+    }
+    
+    .gallery-meta h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    
+    .gallery-meta p {
+      margin: 0;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    
+    /* Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    
+    .input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+      background: #0b1220;
+      color: #e8eefc;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    
+    .input:focus {
+      outline: 2px solid #16a34a;
+      outline-offset: 1px;
+      border-color: #16a34a;
+    }
+    
+    .textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #94a3b8;
+    }
+    
+    /* Socials */
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    
+    .socials a {
+      padding: 60px 20px;
+      border-radius: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 2px solid rgba(31,41,55,0.5);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 140px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .socials a:hover {
+      border-color: #16a34a;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(22,163,74,0.3);
+    }
+    
+    .logo-section {
+      margin: 40px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .logo-image {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      aspect-ratio: 16/4;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .bot-selector {
+        bottom: 16px;
+        right: 16px;
+        flex-direction: row;
+      }
+      
+      .bot-avatar {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+      }
+      
+      .bot-avatar::after {
+        display: none;
+      }
+      
+      .chat-container {
+        max-height: 95vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Animated Hero -->
+    <section class="hero">
+      <h1 class="hero-logo">HYDRA-TERRA</h1>
+      <p>🎤 Voice-Enabled AI Landscape Experts • Chat or Talk with Hydra, Terra & Sol for irrigation planning & installation</p>
+      <div class="cta">
+        <a class="btn" href="tel:61426398510">📞 Call 0426 398 510</a>
+        <a class="btn secondary" href="https://wa.me/61426398510" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </div>
+    </section>
 
-  <!-- SOCIAL LINKS -->
-  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:40px;">
-    <a href="https://www.instagram.com/hydraterra.com.au" target="_blank" style="padding:12px 18px;border-radius:8px;background:#1f2937;color:#fff;text-decoration:none;">Instagram</a>
-    <a href="https://www.facebook.com/share/16xa7NGbyY/" target="_blank" style="padding:12px 18px;border-radius:8px;background:#1f2937;color:#fff;text-decoration:none;">Facebook</a>
-    <a href="https://www.tiktok.com/@hydraterra.com.au" target="_blank" style="padding:12px 18px;border-radius:8px;background:#1f2937;color:#fff;text-decoration:none;">TikTok</a>
-    <a href="https://share.google/TRU7GbzRkTfh3Wued" target="_blank" style="padding:12px 18px;border-radius:8px;background:#1f2937;color:#fff;text-decoration:none;">Google</a>
-    <a href="https://wa.me/61426398510" target="_blank" style="padding:12px 18px;border-radius:8px;background:#16a34a;color:#fff;text-decoration:none;">WhatsApp</a>
+    <!-- Connect Section -->
+    <section class="card">
+      <h2 class="section-title">Connect with Us</h2>
+      <p class="section-sub">Follow our work and get in touch instantly</p>
+
+      <div class="socials">
+        <a href="https://www.instagram.com/hydraterra.com.au" target="_blank" rel="noreferrer" style="background-image: url('instagram-qr.png');">Instagram</a>
+        <a href="https://www.facebook.com/share/16xa7NGbyY/" target="_blank" rel="noreferrer" style="background-image: url('facebook-qr.png');">Facebook</a>
+        <a href="https://www.tiktok.com/@hydraterra.com.au" target="_blank" rel="noreferrer" style="background-image: url('tiktok-qr.png');">TikTok</a>
+        <a href="https://share.google/TRU7GbzRkTfh3Wued" target="_blank" rel="noreferrer" style="background-image: url('google-qr.png');">Google</a>
+        <a href="https://wa.me/61426398510" target="_blank" rel="noreferrer" style="background-image: url('whatsapp-qr.png'); border-color: rgba(22,163,74,0.7);">WhatsApp</a>
+      </div>
+
+      <div class="logo-section">
+        <img src="logo_800.png" alt="HYDRA-TERRA Logo" class="logo-image">
+      </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="card">
+      <h2 class="section-title">Recent Projects</h2>
+      <p class="section-sub">Explore our landscape transformations across Australia</p>
+      <div class="gallery-wide">
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project1.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Modern Courtyard Design</h4>
+            <p>Custom stonework with native planting and irrigation system.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project2.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Garden Lighting Installation</h4>
+            <p>Low-voltage LED pathway and feature lighting.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project3.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Turf & Drainage System</h4>
+            <p>Premium lawn installation with subsurface drainage.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project4.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Sustainable Garden Bed</h4>
+            <p>Drought-tolerant natives with mulch and edging.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project5.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Hardscape Patio</h4>
+            <p>Paver installation with retaining wall feature.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-photo" style="background-image:url('img/project6.jpg');"></div>
+          <div class="gallery-meta">
+            <h4>Complete Backyard Makeover</h4>
+            <p>Full transformation with multiple zones and features.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inquiry Form -->
+    <section class="card">
+      <h2 class="section-title">Request a Consultation</h2>
+      <p class="section-sub">Tell us about your project and we'll get back to you within 24 hours</p>
+      <form id="inquiryForm">
+        <div class="form-grid">
+          <input class="input" type="text" name="name" id="formName" placeholder="Your name" required>
+          <input class="input" type="tel" name="phone" id="formPhone" placeholder="Phone" required>
+          <input class="input" type="email" name="email" id="formEmail" placeholder="Email" required>
+          <input class="input" type="text" name="suburb" id="formSuburb" placeholder="Suburb / City" required>
+        </div>
+        <div class="form-grid" style="margin-top: 14px;">
+          <input class="input" type="date" name="preferred_date" id="formDate">
+          <input class="input" type="text" name="budget" id="formBudget" placeholder="Budget range (optional)">
+        </div>
+        <textarea class="input textarea" name="scope" id="formScope" placeholder="Describe your project (e.g., new lawn installation, garden redesign, irrigation system)" required style="margin-top: 14px;"></textarea>
+        <div class="form-actions">
+          <button class="btn" type="submit">Send Inquiry</button>
+          <a class="btn secondary" href="mailto:info@hydraterra.com.au">Email Direct</a>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <p><strong>HYDRA-TERRA Landscaping Solutions</strong></p>
+      <p>Call 0426 398 510 • Australian-owned & operated</p>
+    </footer>
+  </main>
+
+  <!-- Bot Selector (Floating) -->
+  <div class="bot-selector">
+    <div class="bot-avatar hydra" data-bot="hydra" data-name="Hydra - Design Expert">
+      <div class="voice-indicator"></div>
+      H
+    </div>
+    <div class="bot-avatar terra" data-bot="terra" data-name="Terra - Maintenance">
+      <div class="voice-indicator"></div>
+      T
+    </div>
+    <div class="bot-avatar sol" data-bot="sol" data-name="Sol - Sustainability">
+      <div class="voice-indicator"></div>
+      S
+    </div>
   </div>
 
-  <!-- QR CODES -->
-  <h3 style="text-align:center;margin-bottom:20px;">Scan a QR Code</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center;margin-bottom:60px;">
-
-    <div>
-      <img src="whatsapp-qr.png" alt="WhatsApp QR" style="width:100%;border-radius:10px;">
-      <p>WhatsApp</p>
+  <!-- Chat Modal -->
+  <div class="chat-modal" id="chatModal">
+    <div class="chat-container">
+      <div class="chat-header">
+        <div>
+          <h3>
+            <div class="bot-icon" id="currentBotIcon"></div>
+            <div>
+              <span id="currentBotName"></span>
+              <div class="bot-status" id="botStatus">Ready to help</div>
+            </div>
+          </h3>
+        </div>
+        <button class="close-btn" id="closeChat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="typing-indicator" id="typingIndicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="quick-actions" id="quickActions"></div>
+      <div class="chat-input-area">
+        <button class="voice-btn" id="voiceBtn" title="Click to speak">🎤</button>
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type or speak your message...">
+        <button class="send-btn" id="sendBtn">Send</button>
+      </div>
     </div>
-
-    <div>
-      <img src="instagram-qr.png" alt="Instagram QR" style="width:100%;border-radius:10px;">
-      <p>Instagram</p>
-    </div>
-
-    <div>
-      <img src="facebook-qr.png" alt="Facebook QR" style="width:100%;border-radius:10px;">
-      <p>Facebook</p>
-    </div>
-
-    <div>
-      <img src="tiktok-qr.png" alt="TikTok QR" style="width:100%;border-radius:10px;">
-      <p>TikTok</p>
-    </div>
-
-    <div>
-      <img src="google-qr.png" alt="Google QR" style="width:100%;border-radius:10px;">
-      <p>Google</p>
-    </div>
-
   </div>
 
-  <!-- GALLERY PLACEHOLDER -->
-  <h2 style="text-align:center;margin-bottom:20px;">Recent Work</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 1</div>
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 2</div>
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 3</div>
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 4</div>
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 5</div>
-    <div style="height:160px;background:#111827;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:.6;">Image 6</div>
-  </div>
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.timeline()
+      .to('.hero-logo', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+      .to('.hero p', { opacity: 1, duration: 0.8 }, '-=0.5')
+      .to('.cta', { opacity: 1, duration: 0.8 }, '-=0.4');
+    
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+    
+    gsap.utils.toArray('.gallery-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+    
+    gsap.utils.toArray('.qr-item').forEach((item, i) => {
+      gsap.from(item, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.5,
+        delay: i * 0.1,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+    
+    // ===== INTELLIGENT BOT SYSTEM WITH VOICE =====
+    
+    const botData = {
+      hydra: {
+        name: 'Hydra',
+        color: '#3b82f6',
+        icon: 'H',
+        expertise: 'Design & Planning Expert',
+        voice: 'female',
+        keywords: ['design', 'plan', 'layout', 'irrigation', 'drainage', 'hardscape', 'paving', 'stone', 'retaining', 'wall'],
+        quickActions: ['Design consultation', 'Irrigation planning & installation', 'Hardscape options', 'Site assessment'],
+        understanding: {
+          greetings: ['Hi! I\'m Hydra, your landscape design specialist. What outdoor space are you planning to transform?'],
+          budget: ['Budget is important! For ${BUDGET}, I can suggest: quality materials, professional installation, and smart irrigation. What\'s your property size?'],
+          location: ['${LOCATION} - great area! I\'m familiar with the soil and climate there. What style do you prefer: modern, native Australian, or classic?'],
+          timeline: ['Perfect! For ${TIMELINE}, we can plan: site assessment (week 1), design finalization (week 2), installation (weeks 3-4). Sound good?'],
+          general: ['I can help with: garden layouts, irrigation systems, hardscaping, retaining walls, and drainage solutions. What interests you most?']
+        }
+      },
+      terra: {
+        name: 'Terra',
+        color: '#16a34a',
+        icon: 'T',
+        expertise: 'Maintenance & Care Specialist',
+        voice: 'female',
+        keywords: ['maintain', 'care', 'lawn', 'grass', 'turf', 'mow', 'fertilize', 'prune', 'trim', 'weed', 'mulch', 'plant', 'health'],
+        quickActions: ['Lawn care tips', 'Pruning schedule', 'Fertilizer advice', 'Weed control'],
+        understanding: {
+          greetings: ['Hello! I\'m Terra, specializing in landscape maintenance. What type of garden or lawn care do you need?'],
+          schedule: ['For ${SCHEDULE} maintenance, I recommend: weekly mowing, monthly fertilizing, seasonal pruning. Would you like ongoing service or one-time help?'],
+          problems: ['${PROBLEM} is common! Usually caused by: poor drainage, incorrect watering, or nutrient deficiency. When did you first notice this?'],
+          plants: ['${PLANT} care: Water ${FREQUENCY}, fertilize in ${SEASON}, prune after flowering. Full sun or partial shade?'],
+          general: ['I handle: lawn mowing, hedge trimming, fertilizing, mulching, seasonal cleanups, and plant health diagnostics. What\'s your main concern?']
+        }
+      },
+      sol: {
+        name: 'Sol',
+        color: '#f59e0b',
+        icon: 'S',
+        expertise: 'Sustainability & Eco Solutions',
+        voice: 'female',
+        keywords: ['sustainable', 'eco', 'native', 'water', 'save', 'drought', 'environment', 'solar', 'rainwater', 'compost', 'wildlife', 'organic'],
+        quickActions: ['Native plants', 'Water conservation', 'Solar lighting', 'Wildlife-friendly ideas'],
+        understanding: {
+          greetings: ['G\'day! I\'m Sol, your sustainability advisor. Interested in eco-friendly landscaping solutions?'],
+          water: ['Water conservation is key in Australia! Options: drip irrigation (70% less water), native plants (drought-tolerant), rainwater tanks. What\'s your priority?'],
+          native: ['Native ${PLANT} species for your area: ${SUGGESTIONS}. They attract birds, need minimal water, and thrive naturally. Want a full list?'],
+          energy: ['Solar-powered options: pathway lights, water features, garden sensors. Initial cost ${COST} but zero running costs. Interested?'],
+          general: ['I focus on: native plant selection, water-saving systems, solar solutions, and wildlife-friendly gardens. What eco-goal matters most to you?']
+        }
+      }
+    };
+    
+    let currentBot = 'hydra';
+    let conversationContext = {
+      name: null,
+      budget: null,
+      location: null,
+      timeline: null,
+      problems: [],
+      interests: []
+    };
+    let messageHistory = [];
+    
+    // Web Speech API
+    let recognition;
+    let synthesis = window.speechSynthesis;
+    let isListening = false;
+    
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-AU';
+      
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('chatInput').value = transcript;
+        sendMessage();
+      };
+      
+      recognition.onend = () => {
+        isListening = false;
+        document.getElementById('voiceBtn').classList.remove('listening');
+        document.getElementById('botStatus').textContent = 'Ready to help';
+        document.querySelectorAll('.voice-indicator').forEach(el => el.classList.remove('active'));
+      };
+      
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        isListening = false;
+        document.getElementById('voiceBtn').classList.remove('listening');
+        document.getElementById('botStatus').textContent = 'Voice error - try again';
+      };
+    }
+    
+    // Bot Avatar Click
+    document.querySelectorAll('.bot-avatar').forEach(avatar => {
+      avatar.addEventListener('click', function() {
+        currentBot = this.dataset.bot;
+        openChat(currentBot);
+      });
+    });
+    
+    function openChat(botName) {
+      const bot = botData[botName];
+      const modal = document.getElementById('chatModal');
+      const botIcon = document.getElementById('currentBotIcon');
+      const botNameEl = document.getElementById('currentBotName');
+      const messages = document.getElementById('chatMessages');
+      const quickActions = document.getElementById('quickActions');
+      
+      botIcon.style.background = bot.color;
+      botIcon.textContent = bot.icon;
+      botNameEl.textContent = `${bot.name} - ${bot.expertise}`;
+      
+      messages.innerHTML = '';
+      messageHistory = [];
+      addBotMessage(bot.understanding.greetings[0]);
+      
+      // Quick actions
+      quickActions.innerHTML = bot.quickActions.map(action => 
+        `<button class="quick-btn" onclick="quickAction('${action}')">${action}</button>`
+      ).join('');
+      
+      modal.classList.add('active');
+      document.getElementById('chatInput').focus();
+    }
+    
+    function addBotMessage(text, delay = 800) {
+      const typing = document.getElementById('typingIndicator');
+      typing.classList.add('active');
+      
+      setTimeout(() => {
+        typing.classList.remove('active');
+        
+        const messages = document.getElementById('chatMessages');
+        const msg = document.createElement('div');
+        msg.className = 'message bot';
+        msg.style.borderLeftColor = botData[currentBot].color;
+        msg.innerHTML = `<strong>${botData[currentBot].name}</strong>${text}`;
+        messages.appendChild(msg);
+        messages.scrollTop = messages.scrollHeight;
+        
+        messageHistory.push({ role: 'bot', text });
+        
+        // Speak the message
+        speakText(text);
+      }, delay);
+    }
+    
+    function addUserMessage(text) {
+      const messages = document.getElementById('chatMessages');
+      const msg = document.createElement('div');
+      msg.className = 'message user';
+      msg.textContent = text;
+      messages.appendChild(msg);
+      messages.scrollTop = messages.scrollHeight;
+      
+      messageHistory.push({ role: 'user', text });
+    }
+    
+    function analyzeMessage(userMessage) {
+      const msg = userMessage.toLowerCase();
+      const bot = botData[currentBot];
+      
+      // Extract context
+      const budgetMatch = msg.match(/\$?([\d,]+)\s*(k|thousand|dollars)?|\b(budget|afford|spend)\b/i);
+      if (budgetMatch) {
+        conversationContext.budget = budgetMatch[1] || 'mentioned';
+      }
+      
+      const locationMatch = msg.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/);
+      if (locationMatch && msg.includes('live') || msg.includes('area') || msg.includes('suburb')) {
+        conversationContext.location = locationMatch[1];
+      }
+      
+      const timeMatch = msg.match(/(\d+)\s*(week|month|day)s?|asap|urgent|soon/i);
+      if (timeMatch) {
+        conversationContext.timeline = timeMatch[0];
+      }
+      
+      // Detect problems
+      const problemWords = ['dying', 'brown', 'yellow', 'weeds', 'pests', 'drainage', 'soggy', 'dry'];
+      problemWords.forEach(word => {
+        if (msg.includes(word)) {
+          conversationContext.problems.push(word);
+        }
+      });
+      
+      // Check keywords for bot expertise
+      const matchedKeywords = bot.keywords.filter(kw => msg.includes(kw));
+      if (matchedKeywords.length > 0) {
+        conversationContext.interests.push(...matchedKeywords);
+      }
+      
+      // Generate intelligent response
+      let response = '';
+      
+      if (conversationContext.budget && msg.includes('budget')) {
+        response = bot.understanding.budget[0].replace('${BUDGET}', conversationContext.budget);
+      } else if (conversationContext.location && msg.includes('live')) {
+        response = bot.understanding.location[0].replace('${LOCATION}', conversationContext.location);
+      } else if (conversationContext.timeline) {
+        response = bot.understanding.timeline[0].replace('${TIMELINE}', conversationContext.timeline);
+      } else if (conversationContext.problems.length > 0) {
+        const problem = conversationContext.problems[conversationContext.problems.length - 1];
+        response = (bot.understanding.problems || bot.understanding.general)[0].replace('${PROBLEM}', problem);
+      } else if (matchedKeywords.length > 0) {
+        response = `Great! I can help with ${matchedKeywords.join(', ')}. ` + bot.understanding.general[0];
+      } else {
+        // Contextual follow-up
+        if (messageHistory.length < 4) {
+          response = bot.understanding.general[0];
+        } else {
+          response = `Based on what you've shared, I recommend booking a consultation. Want me to pre-fill the form with our conversation?`;
+          // Auto-fill form
+          setTimeout(() => {
+            if (conversationContext.budget) {
+              document.getElementById('formBudget').value = conversationContext.budget;
+            }
+            if (conversationContext.location) {
+              document.getElementById('formSuburb').value = conversationContext.location;
+            }
+            if (conversationContext.interests.length > 0) {
+              document.getElementById('formScope').value = `Interested in: ${conversationContext.interests.slice(0, 3).join(', ')}`;
+            }
+          }, 1000);
+        }
+      }
+      
+      return response;
+    }
+    
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      addUserMessage(message);
+      input.value = '';
+      
+      const response = analyzeMessage(message);
+      addBotMessage(response);
+    }
+    
+    function speakText(text) {
+      if (!synthesis) return;
+      
+      synthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      const bot = botData[currentBot];
+      
+      // Get all available voices
+      const voices = synthesis.getVoices();
+      let selectedVoice = null;
+      
+      // For Terra: prioritize Australian female voices
+      if (currentBot === 'terra') {
+        selectedVoice = voices.find(v => 
+          v.lang.includes('en-AU') && 
+          (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('woman'))
+        ) || voices.find(v => 
+          v.lang.includes('en-AU')
+        ) || voices.find(v => 
+          (v.lang.includes('en-GB') || v.lang.includes('en-US')) && 
+          (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('woman'))
+        );
+      } else {
+        // For others: female voices with Australian preference
+        selectedVoice = voices.find(v => 
+          (v.lang.includes('en-AU') || v.lang.includes('en-GB') || v.lang.includes('en-US')) && 
+          (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('woman'))
+        ) || voices.find(v => v.lang.includes('en-'));
+      }
+      
+      if (selectedVoice) utterance.voice = selectedVoice;
+      
+      utterance.rate = 0.85;
+      utterance.volume = 1;
+      
+      // Distinct voice characteristics
+      if (currentBot === 'hydra') {
+        utterance.pitch = 1.0; // Hydra: calm, warm
+      } else if (currentBot === 'terra') {
+        utterance.pitch = 1.2; // Terra: Australian female, friendly
+      } else {
+        utterance.pitch = 1.15; // Sol: female, warm
+      }
+      
+      synthesis.speak(utterance);
+    }
+    
+    function quickAction(action) {
+      document.getElementById('chatInput').value = action;
+      sendMessage();
+    }
+    
+    // Voice button
+    document.getElementById('voiceBtn').addEventListener('click', function() {
+      if (!recognition) {
+        alert('Voice input not supported in this browser. Try Chrome or Edge.');
+        return;
+      }
+      
+      if (isListening) {
+        recognition.stop();
+        return;
+      }
+      
+      isListening = true;
+      this.classList.add('listening');
+      document.getElementById('botStatus').textContent = 'Listening...';
+      document.querySelectorAll('.voice-indicator').forEach(el => el.classList.add('active'));
+      
+      recognition.start();
+    });
+    
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+    
+    document.getElementById('closeChat').addEventListener('click', function() {
+      document.getElementById('chatModal').classList.remove('active');
+      if (synthesis) synthesis.cancel();
+      if (isListening && recognition) recognition.stop();
+    });
+    
+    // Form submission
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('✅ Inquiry submitted! We\'ll contact you within 24 hours.\n\n💡 Tip: Connect with our bots for instant answers!');
+      this.reset();
+    });
+    
+    // Pop-in bots after load
+    setTimeout(() => {
+      const selector = document.querySelector('.bot-selector');
+      if (selector) selector.classList.add('show');
+    }, 800);
 
-</section>
-<!-- ===== END SECTION ===== -->
+    // Auto-intro after 3 seconds
+    setTimeout(() => {
+      if (confirm('👋 Meet Hydra, Terra & Sol - our AI landscape experts!\n\n🎤 They can speak and listen. Want to chat?')) {
+        openChat('hydra');
+      }
+    }, 3000);
+    
+    // Load voices when available
+    if (synthesis) {
+      synthesis.onvoiceschanged = () => {
+        console.log('Voices loaded:', synthesis.getVoices().length);
+      };
+    }
+  </script>
+</body>
+</html>

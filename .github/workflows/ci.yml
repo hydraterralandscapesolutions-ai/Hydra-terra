@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  lint-and-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: HTML lint
+        run: npx htmlhint "**/*.html"
+
+      - name: Start server in background
+        run: npm run serve &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:8000
+
+      - name: Check links
+        run: npx linkinator http://localhost:8000 --recursive --silent
