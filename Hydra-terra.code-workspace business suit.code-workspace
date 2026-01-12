@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"chat.disableAIFeatures": false,
+		"chat.editor.wordWrap": "on",
+		"chat.exitAfterDelegation": false,
+		"chat.mcp.assisted.nuget.enabled": false
+	}
+}
