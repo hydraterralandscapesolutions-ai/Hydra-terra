@@ -1,25 +1,21 @@
-# Hydra-terra
+# Hydra-Terra
 
-A tiny static site (single-page) — no build step is required.
+Single-page, animated landscape solutions site for HYDRA-TERRA. Voice-enabled AI personas (Hydra, Terra, Sol) guide visitors. Static build—no bundler.
 
-## Local development 🔧
+## 🌐 Live
+- Production: https://HYDRA-TERRA.COM.AU
+- GitHub Pages: https://hydraterralandscapesolutions-ai.github.io/Hydra-terra/
 
-- Quick (Python):
+## 🚀 Deployment
+- Branch: `main`
+- GitHub Actions: `.github/workflows/deploy-pages.yml` publishes the repo root (includes `CNAME`).
+- CI: `.github/workflows/ci.yml` runs htmlhint, serves on :8000, then linkinator.
 
-  ```bash
-  python3 -m http.server 8000 --directory /workspaces/Hydra-terra
-  # open http://localhost:8000
-  ```
+## 🔧 Local Dev
+- Python: `python3 -m http.server 8000 --directory /workspaces/Hydra-terra`
+- Node: `npm start` (uses existing http-server dependency)
 
-- Node (recommended for convenience):
-
-  ```bash
-  npm install
-  npm start    # runs http-server on port 8000
-  ```
-
-## Deployment 🚀
-
-This repository is configured to auto-deploy to **GitHub Pages** on pushes to `main` via a GitHub Actions workflow (`.github/workflows/deploy-pages.yml`). The workflow uploads the repo root as the Pages artifact, including the `CNAME` file if present.
-
-If you'd like a different provider (Netlify/Vercel) or a build step added (e.g., using a static site generator), say the word and I can add it.
+## 📋 Notes
+- Custom domain is set via `CNAME` with `hydra-terra.com.au`.
+- Keep QR social buttons, wide logo banner, "Coming Soon" gallery cards, and female voices (Terra Australian priority).
+- Contact: +61 426 398 510; socials use handle @hydraterra.com.au.

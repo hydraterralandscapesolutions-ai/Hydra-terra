@@ -1,120 +1,37 @@
 # Copilot Instructions
 
 ## Project Overview
+Hydra-Terra is a single-page, animated landscaping site with three AI personas (Hydra, Terra, Sol) and voice-enabled chat. It is static, runs from the repo root, and deploys via GitHub Pages on `main` with the custom domain `hydra-terra.com.au` (CNAME).
 
-**Hydra-Terra** is an interactive landscape company website featuring three AI chatbots (Hydra, Terra, Sol) with modern futuristic animations. Built for customer engagement with animated logos, interactive elements, and conversational AI experiences. **Admin device constraints: NO new npm installs, CDN-only libraries, vanilla JS.**
+## Constraints
+- **No new npm installs**; use existing deps only (http-server, htmlhint, linkinator). Libraries via CDN/script tags.
+- **Stack**: Vanilla HTML/CSS/JS, GSAP via CDN, Web Speech API for voice. No bundlers/build tools.
+- **Hosting**: GitHub Pages, deploys from `main` with `CNAME` present.
 
-## Core Features & Sections
+## Core Features
+- Hero with animated logo, parallax accents, CTA buttons.
+- Three chatbots: Hydra (design), Terra (maintenance; Australian female voice priority), Sol (sustainability). Auto-greeting after ~3s; typing indicators; short replies with quick-action buttons.
+- Bot avatar selector that pops in; glassy panels; glow/gradient accents.
+- Social hub with QR-code buttons (WhatsApp, Instagram, Facebook, TikTok, Google); pulse/glow hover.
+- Gallery cards marked "Coming Soon"; irrigation planning/installation copy; no composting references.
+- Wide logo banner (16:4 aspect, contain) with figure-like bot avatars.
 
-1. **Animated Hero**: Logo animations (GSAP/Three.js via CDN), parallax effects, interactive CTA buttons
-2. **AI Bot Interface**: Three chatbots - Hydra (design), Terra (maintenance), Sol (sustainability) - conversational customer engagement
-3. **Connect Hub**: Social links + animated QR codes that pulse/glow on hover
-4. **Interactive Gallery**: Project showcase with scroll-triggered animations, lightbox/modal views
-5. **Smart Inquiry Form**: Contextual questions based on bot conversation history
-6. **Bot Avatar Area**: Floating/docked bot selector with character animations
+## Design & Motion
+- Palette: bg #0b1220, text #e8eefc, cards #1f2937; accents Hydra #3b82f6, Terra #16a34a, Sol #f59e0b.
+- Use `clamp()` typography, flex/grid layouts; glassmorphism on floating panels; meaningful staggered animations.
+- Performance: favor `transform`/`opacity`, respect `prefers-reduced-motion`, light gradients and shadows.
 
-## Animation & Interactivity Strategy
+## Assets & Content
+- Logos at root (logo_*.png), icons; QR PNGs at root. Bot avatars use existing illustrated styles.
+- Custom domain: `hydra-terra.com.au` stored in `CNAME` (uppercase filename).
+- Contact number: +61 426 398 510; social handle `@hydraterra.com.au` where applicable.
 
-- **Logo Animation**: GSAP (CDN) for timeline-based logo reveals, morphing, or Three.js (CDN) for 3D rotating logos
-- **Scroll Effects**: Intersection Observer API for scroll-triggered animations (fade-in, slide-up, parallax)
-- **Hover States**: CSS transforms + transitions for cards/buttons; vanilla JS for complex interactions
-- **Bot Interactions**: Modal or sidebar chat UI with typing indicators, message bubbles, smooth transitions
-- **Performance**: Use `will-change`, `transform` (GPU-accelerated), lazy-load animations below fold
+## Dev Workflow
+- Local quickstart: `npm start` (http-server) or `python3 -m http.server 8000 --directory /workspaces/Hydra-terra`.
+- Checks: `npx htmlhint "**/*.html"`; `npm run serve &` then `npx wait-on http://localhost:8000`; `npx linkinator http://localhost:8000 --recursive --silent`.
+- Deployment: Push to `main` → CI (lint/link) → Pages → custom domain.
 
-## Design & Animation Patterns
-
-- **Color Palette**: Dark theme (#0b1220 bg, #e8eefc text), #1f2937 cards, #16a34a primary accent
-  - **Bot Colors**: Hydra (#3b82f6 blue), Terra (#16a34a green), Sol (#f59e0b amber/gold)
-- **Layout**: Flex/grid with `clamp()` typography; fluid spacing with `min()`, `max()`, `clamp()`
-- **Motion Design**: 
-  - Ease curves: `cubic-bezier(0.4, 0.0, 0.2, 1)` for smooth, natural motion
-  - Duration: 0.3s for micro-interactions, 0.6-1.2s for hero animations
-  - Stagger: 0.1s delay between gallery items, bot avatar reveals
-- **Glassmorphism**: `backdrop-filter: blur(10px)` on bot panels, floating cards
-- **Futuristic Accents**: Gradient borders, glow effects (`box-shadow` with accent colors), scan-line animations
-
-## Bot Integration & Configuration
-
-- **Bot Backend**: 
-  - **Option 1 (Recommended)**: Client-side fetch to OpenAI/Claude API (user provides API key in browser or hardcode temporarily)
-  - **Option 2**: Static decision tree initially (no API), upgrade to serverless function later
-  - **Option 3**: Serverless (Vercel/Netlify Functions) if deploying beyond GitHub Pages
-- **Bot Personalities**:
-  - **Hydra**: Design consultant (hardscaping, irrigation, layout planning)
-  - **Terra**: Maintenance expert (plant care, soil health, seasonal tips)
-  - **Sol**: Sustainability advisor (native plants, water conservation, eco solutions)
-- **Chat UI**: Vanilla JS modal/sidebar; CSS transitions; no React/Vue (cannot install)
-- **Form Integration**: Pre-fill inquiry form with bot conversation context (localStorage for session data)
-- **API Keys**: Prompt user or use `<script>` variable (temporary); serverless function ideal for production
-- **Domain (CNAME)**: `HYDRA-TERRA.COM.AU` - preserve casing for GitHub Pages
-
-## Asset Management
-
-- **Logos**: logo_*.png at root; **prefer SVG** for crisp scaling and GSAP morphing animations
-- **Bot Avatars**: Create hydra-avatar.svg, terra-avatar.svg, sol-avatar.svg with character illustrations
-- **QR Codes**: Root level (whatsapp-qr.png, etc.); add CSS animations (pulse, glow) on hover
-- **Project Photos**: `img/` folder, WebP format preferred (smaller size), fallback PNG/JPG
-- **Animation Assets**: Lottie JSON files for complex animations (export from After Effects) in `animations/`
-- **3D Models**: If using Three.js, store GLB/GLTF models in `models/` folder (keep under 500KB each)
-
-## Developer Workflows
-
-### Local Dev (Admin Device - NO New Downloads)
-```bash
-npm start  # Uses existing http-server on port 8000, cache disabled
-# Alternative: python3 -m http.server 8000 --directory /workspaces/Hydra-terra
-```
-
-### Libraries via CDN (NO npm install - Use Script Tags)
-```html
-<!-- GSAP for animations (timeline, ScrollTrigger) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-<!-- Three.js for 3D logo effects -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<!-- Lottie for After Effects animations -->
-<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
-
-<!-- All bot logic: vanilla JS, fetch API for OpenAI/Claude (API key in code or prompt user) -->
-```
-
-### Pre-Push Checks
-```bash
-npm run lint:html        # htmlhint validation (already installed)
-npm start &              # Test animations/interactions locally
-npm run check:links      # Linkinator recursive check (already installed)
-# NO build step - everything loads via CDN, inline scripts, or static JS files
-```
-
-### CI/Deployment
-- **CI** (`.github/workflows/ci.yml`): Node 18, htmlhint, linkinator (NO new dependencies)
-- **Pages** (`.github/workflows/deploy-pages.yml`): Auto-deploy main branch from repo root (no build process)
-- **Performance**: Manual Lighthouse test in browser DevTools (cannot add CI tools)
-- **Network Constraints**: All external libraries via CDN; admin device cannot install packages
-
-## Conventions & Constraints
-
-- **CRITICAL: Admin Device Restrictions**
-  - **NO npm install** for new packages (use existing: http-server, htmlhint, linkinator only)
-  - **NO bundlers/build tools** (no Vite, Webpack, Parcel)
-  - **Use CDN links** for all libraries (GSAP, Three.js, Lottie from jsdelivr/unpkg)
-  - **Inline or external .js files** for custom code (no module bundling)
-  - **Network unchanged**: Cannot modify network settings
-- **Architecture**: Static HTML + vanilla JS + CDN libraries; keep everything browser-executable
-- **Animation Performance**: 
-  - Use `transform` and `opacity` (GPU-accelerated), avoid `width`/`height`/`top`/`left` animations
-  - `will-change` sparingly (only active animations)
-  - Reduce motion: Respect `prefers-reduced-motion` media query
-- **Bot UX Principles**:
-  - Initial greeting auto-appears after 3s on page
-  - Show typing indicators (0.5-1.5s delay) for realistic feel
-  - Keep responses under 2-3 sentences; offer actionable buttons
-  - Allow users to switch bots mid-conversation
-- **Accessibility**: 
-  - Animations respect `prefers-reduced-motion`
-  - Bot chat keyboard-navigable (Tab, Enter, Escape)
-  - ARIA labels on interactive elements (`role="dialog"` for bot panel)
-  - Color contrast 4.5:1 minimum on text
-- **Mobile-First**: Animations scale down on mobile (fewer particles, simpler effects), bot UI slides from bottom
+## Practices
+- Keep HTML semantic; add alt text; maintain responsive/mobile-first layout.
+- Avoid new assets >1MB; prefer WebP if adding photos; keep QR/branding as-is.
+- Preserve voice logic (female voices; Terra prefers en-AU). Keep QR backgrounds and "Coming Soon" gallery labels.
